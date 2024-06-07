@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import IncompleteTodo from './IncompleteTodo';
 import CompleteTodo from './CompleteTodo';
 import { auth, db } from '../../firebase';
-import { collection, query, where, getDocs, doc, updateDoc } from 'firebase/firestore';
+import { collection, query, where, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 
 const getTodos = async () => {
     const q = query(collection(db,'todos'), where("userId",'==',auth.currentUser?.uid));
@@ -29,9 +29,7 @@ const getTodos = async () => {
     return {incomplete,complete};
 }
 
-const TodoBody = (props: any) => {
-    const [incompleteTodos, setIncompleteTodos] = useState([]);
-    const [completeTodos, setCompleteTodos] = useState([]);
+const TodoBody = ({incompleteTodos, setIncompleteTodos, completeTodos, setCompleteTodos}: any) => {
 
     const _fetchTodos = () => {
         getTodos()
@@ -54,12 +52,36 @@ const TodoBody = (props: any) => {
         console.log(updatedVal)
 
         let updatedTodo = {
-            text: updatedVal.text,
+            text: updatedVal.updatedText,
             completed: updatedVal.completed,
         }
 
-        updateDoc(docRef, updatedTodo).then(res => console.log(res));
+        try{
+
+            updateDoc(docRef, updatedTodo);
+        }
+        catch (err) {
+            console.log(err);
+        }
         _fetchTodos();
+    }
+
+    const deleteTodo = (deletedVal : any) => {
+        const docRef = doc(db, "todos", deletedVal.id);
+        deleteDoc(docRef);
+
+        if (deletedVal.completed === true) {
+            setCompleteTodos((prev: any) => {
+                return prev.filter((x: any) => x.id !== deletedVal.id)
+            })
+        }
+        else {
+            setIncompleteTodos((prev: any) => {
+                return prev.filter((x: any) => x.id !== deletedVal.id)
+            })
+        }
+        // const newTodos = items.filter((item, i) => i !== index);
+        // setItems(newItems);      
     }
 
     return (
@@ -72,7 +94,7 @@ const TodoBody = (props: any) => {
                                     key={_current.id}
                                     info={_current}
                                     updateTodo={updateTodo}
-                                    // deleteTodo={deleteTodo}
+                                    deleteTodo={deleteTodo}
                                 />
                     })
 
@@ -85,7 +107,7 @@ const TodoBody = (props: any) => {
                         return <CompleteTodo 
                                     key={_current.id}
                                     info={_current}
-                                    // deleteTodo={deleteTodo}
+                                    deleteTodo={deleteTodo}
                                 />
                     })
                 }
@@ -95,15 +117,3 @@ const TodoBody = (props: any) => {
 }
 
 export default TodoBody
-// const mapStateToProps = (state: any) => ({
-//     todos: selectTodos(state),
-//     completeTodos: selectCompleteTodos(state),
-//     incompleteTodos: selectIncompleteTodos(state),
-// });
-
-// const mapDispatchToProps = (dispatch: any) => ({
-//     updateTodo: (body: updateTodoParams) => dispatch(UpdateTodo.request(body)),
-//     deleteTodo: (id: string) => dispatch(DeleteTodo.request(id)),
-// });
-
-// export default connect(mapStateToProps, mapDispatchToProps)(TodoBody)

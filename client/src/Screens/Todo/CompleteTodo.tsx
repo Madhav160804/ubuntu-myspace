@@ -9,7 +9,7 @@ const CompleteTodo = (props: any) => {
     const [hover, setHover] = useState(false);
 
     const deleteHandler = () => {
-        return deleteTodo(info.id);
+        return deleteTodo(info);
     }
 
     const _renderCheckbox = () => {

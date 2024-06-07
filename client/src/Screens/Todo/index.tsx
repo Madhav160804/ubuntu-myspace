@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import NewTodo from './NewTodo'
 import TodoBody from './TodoBody'
-import { collection, doc, getDocs } from 'firebase/firestore';
-import { db } from '../../firebase';
 
 const Todo = () => {
 
-    const [todosList, setTodosList] = useState<any>([]);
-
-    useEffect(() => {
-        getDocs(collection(db, "todos")).then(data => {
-            setTodosList(data.docs)
-        });
-    }, []);
+    const [incompleteTodos, setIncompleteTodos] = useState([]);
+    const [completeTodos, setCompleteTodos] = useState([]);
 
     const _renderHeader = () => {
         return (
@@ -27,8 +20,8 @@ const Todo = () => {
             {_renderHeader()}
 
             <div className="mx-3 h-100">
-                <NewTodo />
-                <TodoBody todosList={todosList} />
+                <NewTodo setIncompleteTodos={setIncompleteTodos} incompleteTodos={incompleteTodos}/>
+                <TodoBody incompleteTodos={incompleteTodos} completeTodos={completeTodos} setIncompleteTodos={setIncompleteTodos} setCompleteTodos={setCompleteTodos}/>
             </div>
         </div>
     )

@@ -10,13 +10,7 @@ interface addTodoParams {
     userId: string ,
 }
 
-interface newTodoProps {
-    // addTodo: (body: addTodoParams) => void;
-}
-
-const NewTodo = (props: any) => {
-
-    // const { addTodo } = props;
+const NewTodo = ({setIncompleteTodos,incompleteTodos}: any) => {
 
     const [text, setText] = useState("");
     const [active, setActive] = useState(false);
@@ -44,6 +38,13 @@ const NewTodo = (props: any) => {
                 completed: false,
                 userId
             });
+            console.log(docRef.id)
+            setIncompleteTodos([...incompleteTodos,{
+                text,
+                completed: false,
+                userId,
+                id: docRef.id
+            }]);
           } catch (e) {
             console.error("Error adding document: ", e);
           }
@@ -87,10 +88,5 @@ const NewTodo = (props: any) => {
     )
 }
 
-// const mapDispatchToProps = (dispatch: any) => ({
-//     addTodo: (body: addTodoParams) => dispatch(AddTodo.request(body)),
-// });
-
-// export default connect(null, mapDispatchToProps)(NewTodo);
 export default NewTodo;
 

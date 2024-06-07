@@ -23,7 +23,7 @@ const IncompleteTodo = (props: any) => {
     }
 
     const deleteHandler = () => {
-        return deleteTodo(info.id);
+        return deleteTodo(info);
     }
 
     const taskCompletedHandler = () => {
