@@ -67,7 +67,7 @@
 <table>
 	<tr>
 		<td>
-			Easily manage your files by keeping them sorted into folders by uploading, deleting and renaming folders. All the files are stored in AWS S3 and completely secure.
+			Easily manage your files by keeping them sorted into folders by uploading, deleting and renaming folders. All the files are stored in Google Firebase Storage and completely secure.
 		</td>
 		<td width="75%" >
 			<img src="https://github.com/Madhav160804/ubuntu-myspace/blob/master/README-images/explorer.png" height="350" >
