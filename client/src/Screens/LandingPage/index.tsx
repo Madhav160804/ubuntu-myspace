@@ -3,7 +3,7 @@ import NavBar from '../../components/NavBar'
 import SideBar from '../../components/SideBar'
 import Window from '../../components/Window'
 import Todo from "../Todo";
-// import Notes from "../Notes";
+import Notes from "../Notes";
 // import { FetchTodos } from '../../actions/TodoAction';
 // import { FetchNotes } from '../../actions/NotesAction';
 // import { connect } from 'react-redux';
@@ -46,15 +46,13 @@ const LandingPage = (props: any) => {
             <div className="d-flex flex-row h-100" style={{overflow: "hidden"}}>
                 <SideBar setOpen={setOpen} />
                 <Window component={Todo} isOpen={open.todos} setOpen={setOpen} />
-                {/* <Window component={Notes} isOpen={open.notes} setOpen={setOpen} /> */}
+                <Window component={Notes} isOpen={open.notes} setOpen={setOpen} />
                 {/* <Window component={Explorer} isOpen={open.explorer} setOpen={setOpen} /> */}
                 <Window component={Terminal} isOpen={open.terminal} setOpen={setOpen} />
                 <Window component={TicTacToe} isOpen={open.tictactoe} setOpen={setOpen} />
                 <Window component={CalculatorScreen} isOpen={open.calculator} setOpen={setOpen} />
                 <Window component={Whiteboard} isOpen={open.whiteboard} setOpen={setOpen} />
             </div>
-
-
         </div>
     )
 }

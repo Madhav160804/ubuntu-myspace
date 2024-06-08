@@ -30,7 +30,7 @@ const NewTodo = ({setIncompleteTodos,incompleteTodos}: any) => {
     const addTaskHandler = async(e: any) => {
         e.preventDefault();
 
-        if(!text) return ;
+        if(!text) return;
 
         try {
             const docRef = await addDoc(collection(db, "todos"), {
