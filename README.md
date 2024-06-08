@@ -135,11 +135,11 @@ These steps will help you setup this project in your device
   ```
 
 ## Installation
-	```sh
-	cd client
-	npm i
-	npm run start
-	```
+```sh
+cd client
+npm i
+npm run start
+```
 	
 <!-- CONTRIBUTING -->
 ## Contributions
