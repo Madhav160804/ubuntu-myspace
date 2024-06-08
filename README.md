@@ -119,11 +119,9 @@
 
 The following technologies were used in creating this application:
 * [React JS](https://reactjs.org)
-* [Express](http://expressjs.com/)
 * [Reactstrap](https://reactstrap.github.io)
 * [SASS](https://sass-lang.com/)
-* [Firebase](https://firebasejs.)
-* []
+* [Firebase](https://firebase.google.com/docs)
 
 ## Getting Started
 
@@ -135,50 +133,12 @@ These steps will help you setup this project in your device
   ```sh
   npm install npm@latest
   ```
-  
-* postgres
-  ```sh
-  (For Linux)
-  sudo apt install postgresql postgresql-contrib 
-  ```
 
 ## Installation
-
-1. Create a new postgres database called `ubuntu-myspace` in your device.
-2. Create a new user if there is no already existing user in postgres.
-3. For using `File Explorer` part of the application, 
-	* Generate a set of [S3](https://s3.console.aws.amazon.com/s3/home) credentials
-	* Create a public bucket named `ubuntu-myspace`
-4. Create a `config.js` file in server main directory.
-5. ```javascript
-	const config = {
-		"postgres": {
-		  "username": "YOUR_POSTGRES_USERNAME",
-		  "password": "YOUR_POSTGRES_PASSWORD_FOR_THAT_USER",
-		  "database": "ubuntu-myspace",
-		  "host": "127.0.0.1",
-		  "dialect": "postgres"
-		},
-		"host": "http://localhost:8080",
-		"clientHost": "http://localhost:3000",
-		"s3Credentials": {
-		  "AWSAccessKeyId": "GET_FROM_AWS_S3",
-		  "AWSSecretKey": "GET_FROM_AWS_S3"
-		}
-	};
-	module.exports = config;
-   ```
-6. Open terminal 1, and execute following commands:
 	```sh
 	cd client
 	npm i
 	npm run start
-	```
-7. Open terminal 2, and execute following commands:
-	```sh
-	cd server
-	npm i
-	npm run dev
 	```
 	
 <!-- CONTRIBUTING -->
@@ -195,6 +155,6 @@ Contributions are what make the open source community such an amazing place to b
 <!-- CONTACT -->
 ## Contact
 
-Vaibhav - [LinkedIn](https://www.linkedin.com/in/Madhav160804/) - vaibhavdhingra10@gmail.com
+Vaibhav - [LinkedIn](https://www.linkedin.com/in/Madhav160804/) - madhavdhingra11@gmail.com
 
 Project Link: [https://github.com/Madhav160804/ubuntu-myspace](https://github.com/Madhav160804/ubuntu-myspace)
