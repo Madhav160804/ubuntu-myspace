@@ -53,7 +53,7 @@ const Notes = () => {
 
 
             } catch (err) {
-
+                console.error('Error fetching notes: ', err);
             }
 
         }

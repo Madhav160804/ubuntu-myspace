@@ -14,7 +14,6 @@ const NotesRightHalf = (props: any) => {
     const createNote = async(body : any) => {
         try {
             const docRef = await addDoc(collection(db, "notes"),body);
-            console.log(docRef.id)
             setActiveNote({
                 title: activeTitle,
                 text: activeText,
@@ -90,7 +89,6 @@ const NotesRightHalf = (props: any) => {
     const deleteNote = async (activeNoteId : any) => {
         try {
             const docRef = doc(db,"notes",activeNoteId);
-            console.log(docRef);
             setNotes(notes.filter((note:any) => note.id!==activeNoteId))
             await deleteDoc(docRef)
         } catch (err) {

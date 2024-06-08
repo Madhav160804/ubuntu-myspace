@@ -13,6 +13,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "bootstrap": "^5.3.3",
+    "crypto": "^1.0.1",
     "firebase": "^10.12.2",
     "firebaseui": "^6.1.0",
     "fortawesome": "^0.0.1-security",
@@ -32,6 +33,8 @@
     "terminal-in-react": "^4.3.1",
     "tldraw": "^2.1.4",
     "typescript": "^4.9.5",
+    "uuid": "^9.0.1",
+    "uuidv4": "^6.2.13",
     "validator": "^13.12.0",
     "web-vitals": "^2.1.4"
   },
@@ -61,6 +64,7 @@
   },
   "devDependencies": {
     "@types/luxon": "^3.4.2",
+    "@types/uuid": "^9.0.8",
     "@types/validator": "^13.11.10",
     "react-scripts": "^5.0.1",
     "sass": "^1.77.4"

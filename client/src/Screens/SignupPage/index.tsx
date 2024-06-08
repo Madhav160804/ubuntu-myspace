@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import UbuntuImage from "../../assets/images/ubuntu_orange_hex.svg";
 import isEmail from 'validator/es/lib/isEmail';
 import { toast } from 'react-toastify';
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from '../../firebase'
 
 const SignupPage = () => {
@@ -34,6 +34,8 @@ const SignupPage = () => {
             // Signed up 
             const user = userCredential.user;
             // ...
+            updateProfile(user, { displayName: name });
+
             })
             .catch((error) => {
             const errorCode = error.code;

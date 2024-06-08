@@ -3,11 +3,11 @@ import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Navbar } from 're
 import { DateTime } from 'luxon';
 import { signOut } from "firebase/auth";
 import { auth } from '../firebase';
+import { toast } from 'react-toastify';
 
-// import { getUserAccessName, setUserAccessToken } from '../helpers/authentication';
 
 const NavBar = () => {
-
+    const name = auth.currentUser?.displayName;
     const [currentTime, setCurrentTime] = useState(DateTime.now().toLocaleString(DateTime.DATETIME_MED_WITH_WEEKDAY));
     const [isOpen, setIsOpen] = useState(false);
 
@@ -23,9 +23,8 @@ const NavBar = () => {
     const logoutHandler = () => {
 
         signOut(auth).then(() => {
-            console.log('sign out successful')
+            toast.success('Signed out successfully');
           }).catch((error) => {
-            // An error happened.
             console.log(error.message);
           });
     }
@@ -43,7 +42,7 @@ const NavBar = () => {
                 <DropdownMenu>
                     <DropdownItem header>
                         {/* <span>Hi, <strong>{getUserAccessName()}</strong></span> */}
-                        <span>Hi, <strong>user</strong></span>
+                        <span>Hi, <strong>{name}</strong></span>
                     </DropdownItem>
 
                     <DropdownItem onClick={logoutHandler}>
