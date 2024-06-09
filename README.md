@@ -155,6 +155,6 @@ Contributions are what make the open source community such an amazing place to b
 <!-- CONTACT -->
 ## Contact
 
-Vaibhav - [LinkedIn](https://www.linkedin.com/in/Madhav160804/) - madhavdhingra11@gmail.com
+Madhav Dhingra - [LinkedIn](https://www.linkedin.com/in/Madhav160804/) - madhavdhingra11@gmail.com
 
 Project Link: [https://github.com/Madhav160804/ubuntu-myspace](https://github.com/Madhav160804/ubuntu-myspace)
