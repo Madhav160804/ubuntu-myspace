@@ -157,5 +157,5 @@ Contributions are what make the open source community such an amazing place to b
 
 Madhav Dhingra - [LinkedIn](https://www.linkedin.com/in/m-dhingra/) - madhavdhingra11@gmail.com
 
-The Website can be visited [here](https://ubuntu-myspace-imkhmxttm-madhav160804s-projects.vercel.app/)
+The Website can be visited [here](https://ubuntu-myspace.vercel.app/)
 Project Link: [https://github.com/Madhav160804/ubuntu-myspace](https://github.com/Madhav160804/ubuntu-myspace)
