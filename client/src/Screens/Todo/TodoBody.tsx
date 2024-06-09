@@ -57,7 +57,6 @@ const TodoBody = ({incompleteTodos, setIncompleteTodos, completeTodos, setComple
         }
 
         try{
-
             updateDoc(docRef, updatedTodo);
         }
         catch (err) {

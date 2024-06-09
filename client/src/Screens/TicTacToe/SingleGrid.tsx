@@ -1,6 +1,5 @@
 import classnames from "classnames";
 import React from 'react'
-import { Col } from 'reactstrap';
 
 interface SingleGridProps {
     idx: number;
