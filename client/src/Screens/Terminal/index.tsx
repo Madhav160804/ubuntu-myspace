@@ -1,11 +1,10 @@
 import React from 'react';
-
 import Terminal from 'terminal-in-react';
-// import { getUserAccessName } from '../../helpers/authentication';
+import { auth } from '../../firebase'
 
 const TerminalApp = () => {
 
-    const aboutDeveloper = () =>  {
+    const aboutDeveloper = () =>  { 
         return `
         𝓒𝓻𝓮𝓪𝓽𝓮𝓭 𝓑𝔂 :-
 
@@ -39,7 +38,7 @@ const TerminalApp = () => {
                 backgroundColor="black"
                 hideTopBar={true}
                 style={{maxWidth: "100%", minHeight: "100%",height: "100%", lineHeight: "0.7em", fontSize: "1em"}}
-                msg={`Welcome ${'Bonge'}, you can use some commands here!`}
+                msg={`Welcome ${auth.currentUser?.displayName}, you can use some commands here!`}
                 // msg={`Welcome ${getUserAccessName()}, you can use some commands here!`}
                 startState='maximised'
                 description={descriptions}

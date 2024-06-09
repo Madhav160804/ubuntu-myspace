@@ -32,55 +32,32 @@ interface SingleFileProps {
     toggleModal: () => void;
 }
 
-// async function downloadFile(url: string, filename: string) {
-//     console.log('Downloading file',url,filename);
-//     const a = document.createElement('a');
-//     a.href = url;
-//     a.download = filename;
-//     document.body.appendChild(a);
-//     a.click();
-//     document.body.removeChild(a);
-
-//   }
-
 async function downloadFile(url: string, filename: string) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const blob = await response.blob();
-        const urlBlob = window.URL.createObjectURL(blob);
+    console.log('Downloading file',url,filename);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
 
-        const a = document.createElement('a');
-        a.href = urlBlob;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-
-        // Cleanup the object URL
-        window.URL.revokeObjectURL(urlBlob);
-    } catch (error) {
-        console.error('Error downloading the file:', error);
-    }
-}
+  }
 
   
 
-const SingleFile = (props: any) => {
+function SingleFile(props: any) {
 
     const { info, setSequence, selectedFolder, setSelectedFolder, deleteFile, toggleModal } = props;
 
     const getFileIcon = () => {
-        if(info.type === 1) {
+        if (info.type === 1) {
             return "ri-folder-2-line";
         }
 
         const idx = info.name.lastIndexOf('.');
-        const extension = info.name.substr(idx+1);
+        const extension = info.name.substr(idx + 1);
 
-        switch(extension) {
+        switch (extension) {
             case "pdf":
                 return "ri-file-pdf-line";
 
@@ -98,71 +75,67 @@ const SingleFile = (props: any) => {
             case "ppt":
                 return "ri-file-ppt-2-line";
 
-            default: 
+            default:
                 return "ri-file-line";
         }
-    }
+    };
 
     const fileSingleClickHandler = () => {
         // if(selectedFolder === info) {
         //     return setSelectedFolder(null);
         // }
-
         return setSelectedFolder(info);
-    }
+    };
 
     const fileDoubleClickHandler = async () => {
-        if(info.type === 1) {
+        if (info.type === 1) {
             return setSequence((prev: Array<folderSeqParams>) => {
                 let updatedSequence = [...prev, info];
                 return updatedSequence;
             });
         }
-        try{
+        try {
             toast.success("Your file download has started!");
             // const signedUrl = await getPreSignedUrl(info.url);
             const fileRef = ref(storage, info.url);
             getDownloadURL(fileRef)
                 .then(((url: string) => {
-                    downloadFile(url,info.name);
+                    downloadFile(url, info.name);
                 }))
                 .catch((error) => {
                     switch (error.code) {
                         case 'storage/object-not-found':
-                          toast.error(`File doesn't exit`);
-                          break;
+                            toast.error(`File doesn't exit`);
+                            break;
                         case 'storage/unauthorized':
-                          toast.error(`Access denied`);
-                          break;
+                            toast.error(`Access denied`);
+                            break;
                         case 'storage/canceled':
-                          toast.error('User cancelled the upload');
-                          break;
-                  
-                        // ...
-                  
-                        case 'storage/unknown':
-                          toast.error(`Unknown error occured`);
-                          break;
-                      }
-                  
-                })
+                            toast.error('User cancelled the upload');
+                            break;
 
-        } catch(err) {
+                        // ...
+                        case 'storage/unknown':
+                            toast.error(`Unknown error occured`);
+                            break;
+                    }
+
+                });
+
+        } catch (err) {
             toast.error('File download failed');
-            console.log('File download failed : ',err);
+            console.log('File download failed : ', err);
         }
-    }
+    };
 
     const deleteFileHandler = () => {
         toast.error(<span><strong>{info.name}</strong> deleted successfully!</span>);
         return deleteFile(info.id);
-    }
+    };
 
     // const _renderContextMenu = () => {
-
     //     return (
     //         <ContextMenu id={info.id} className="bg-white fa-sm context-menu" style={{zIndex: 10}}>
-                
     //             {
     //                 info.type === 1 ?
     //                     <>
@@ -183,7 +156,6 @@ const SingleFile = (props: any) => {
     //                             <i className="ri-file-download-line mr-1" />
     //                             Download
     //                         </MenuItem>
-
     //                         <MenuItem 
     //                             className="d-flex flex-row align-items-center text-danger cursor-pointer"
     //                             onClick={deleteFileHandler}
@@ -193,34 +165,32 @@ const SingleFile = (props: any) => {
     //                         </MenuItem>
     //                     </>
     //             }
-                
     //         </ContextMenu>
     //     )
     // }
-
     const contextMenuClickHandler = () => {
         return setSelectedFolder(info);
-    }
+    };
 
     return (
         // <ContextMenuTrigger id={info.id}>
-            <div 
-                className={classnames("d-flex flex-column h-100 py-1 pb-1 cursor-pointer align-items-center justify-content-center", { "active-file": info === selectedFolder } )}
-                onClick={fileSingleClickHandler}
-                onDoubleClick={fileDoubleClickHandler}
-                onContextMenu={contextMenuClickHandler}
-            >
-                <i className={`${getFileIcon()} fa-3x text-orange `} />
-                
-                <span className="file-name-span ">
-                    {info.name}
-                </span>
-                <a target="_blank" href="_#"  id={info.id} style={{display: "none"}} >""</a>
-            </div>
+        <div
+            className={classnames("d-flex flex-column h-100 py-1 pb-1 cursor-pointer align-items-center justify-content-center", { "active-file": info === selectedFolder })}
+            onClick={fileSingleClickHandler}
+            onDoubleClick={fileDoubleClickHandler}
+            onContextMenu={contextMenuClickHandler}
+        >
+            <i className={`${getFileIcon()} fa-3x text-orange `} />
+
+            <span className="file-name-span ">
+                {info.name}
+            </span>
+            <a target="_blank" href="_#" id={info.id} style={{ display: "none" }}>""</a>
+        </div>
 
         //     {_renderContextMenu()}
         // </ContextMenuTrigger>
-    )
+    );
 }
 
 export default SingleFile;
