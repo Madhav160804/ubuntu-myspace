@@ -16,7 +16,7 @@ const LandingPage = (props: any) => {
     const [open, setOpen] = useState({
         todos: false,
         notes: false,
-        explorer: true,
+        explorer: false,
         terminal: false,
         tictactoe: false,
         calculator: false,
