@@ -33,7 +33,6 @@ interface SingleFileProps {
 }
 
 async function downloadFile(url: string, filename: string) {
-    console.log('Downloading file',url,filename);
     const a = document.createElement('a');
     a.href = url;
     a.download = filename;
@@ -124,7 +123,7 @@ function SingleFile(props: any) {
 
         } catch (err) {
             toast.error('File download failed');
-            console.log('File download failed : ', err);
+            console.error('File download failed : ', err);
         }
     };
 

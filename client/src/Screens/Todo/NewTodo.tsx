@@ -38,7 +38,6 @@ const NewTodo = ({setIncompleteTodos,incompleteTodos}: any) => {
                 completed: false,
                 userId
             });
-            console.log(docRef.id)
             setIncompleteTodos([...incompleteTodos,{
                 text,
                 completed: false,

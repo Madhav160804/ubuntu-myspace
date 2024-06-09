@@ -12,7 +12,6 @@ const getTodos = async () => {
     const incomplete : any = [];
     const complete : any = [];
 
-    console.log(querySnapshot)
     querySnapshot.docs.forEach((doc) => {
         const res = doc.data();
         const currentTodo = {
@@ -38,7 +37,7 @@ const TodoBody = ({incompleteTodos, setIncompleteTodos, completeTodos, setComple
                 setCompleteTodos(complete);
             })
             .catch((err) => {
-                console.log(err.message);
+                console.error(err.message);
             })
     }
 
@@ -46,21 +45,14 @@ const TodoBody = ({incompleteTodos, setIncompleteTodos, completeTodos, setComple
         _fetchTodos();
     },[])
 
-    const updateTodo = (updatedVal: any) => {
+    const updateTodo = async (updatedVal: any) => {
         const docRef = doc(db, "todos", updatedVal.id);
 
-        console.log(updatedVal)
-
-        let updatedTodo = {
-            text: updatedVal.updatedText,
-            completed: updatedVal.completed,
-        }
-
         try{
-            updateDoc(docRef, updatedTodo);
+            await updateDoc(docRef, updatedVal);
         }
         catch (err) {
-            console.log(err);
+            console.error(err);
         }
         _fetchTodos();
     }
@@ -79,8 +71,6 @@ const TodoBody = ({incompleteTodos, setIncompleteTodos, completeTodos, setComple
                 return prev.filter((x: any) => x.id !== deletedVal.id)
             })
         }
-        // const newTodos = items.filter((item, i) => i !== index);
-        // setItems(newItems);      
     }
 
     return (

@@ -22,26 +22,6 @@ const Window = (props: windowProps) => {
 
     const [fullScreen, setFullScreen] = useState(true);
 
-    // const [height, setHeight] = useState(window.innerHeight-100);
-    // const [width, setWidth] = useState(window.innerWidth-90);
-    // const rndRef = React.useRef(null);
-
-    // useEffect(() => {
-    //     const handleWindowResize = () => {
-    //         setHeight(window.innerHeight);
-    //         setWidth(window.innerWidth);
-    //     }
-
-    //     window.addEventListener('resize', handleWindowResize)
-    // });
-
-    // console.log(height, width);
-
-    // const resizeHandler = (e: any, direction: any, ref: any) => {
-    //     setHeight(ref.style.height.slice(0,-2));
-    //     setWidth(ref.style.width.slice(0,-2));
-    // }
-
     const getFirstIcon = () => {
         return "ri-checkbox-blank-line"
     }

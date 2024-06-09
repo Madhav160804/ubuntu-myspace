@@ -13,7 +13,6 @@ const LoginPage = () => {
     const [password, setPassword] = useState("");
     
     const loginHandler = (e: any) => {
-        console.log(auth);
         e?.preventDefault();
         
         if(!isEmail(email)) {
@@ -24,7 +23,6 @@ const LoginPage = () => {
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-                console.log(user);
                 // ...
             })
             .catch((error) => {
@@ -32,7 +30,6 @@ const LoginPage = () => {
                 const errorMessage = error.message;
                 toast.error('Invalid Credentials');
             });
-        console.log(auth);
     }
 
     return (

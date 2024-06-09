@@ -50,7 +50,6 @@ const fetchFiles = async (folderId : string) => {
             }
             tempFiles.push(currentFile);
         });
-        console.log('tempfiles',tempFiles);
         return tempFiles;
     } catch(err) {
         console.error('Error fetching files: ',err);
@@ -66,11 +65,7 @@ const Explorer = () => {
 
     const [files, setFiles] = useState([]);
 
-    console.log(files)
-
     const [folderSeq, setFolderSeq] = useState<Array<folderSeqParams>>([{id: auth.currentUser?.uid, name: "Home"}]);
-
-    console.log(folderSeq)
 
     const [selectedFolder, setSelectedFoler] = useState<File | null>(null);
     // const [renameModalOpen, setRenameModalOpen] = useState(false);

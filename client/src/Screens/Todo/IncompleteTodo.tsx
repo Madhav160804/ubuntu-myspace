@@ -15,7 +15,7 @@ const IncompleteTodo = (props: any) => {
         e.preventDefault();
         const body = {
             ...info,
-            updatedText: text,
+            text: text,
         }
 
         updateTodo(body);
@@ -28,14 +28,11 @@ const IncompleteTodo = (props: any) => {
 
     const taskCompletedHandler = () => {
         setComplete(true);
-        setTimeout(() => {
-            const body = {
-                ...info,
-                completed: true,
-            }
-    
-            updateTodo(body);
-        }, 500);
+        const body = {
+            ...info,
+            completed: true
+        }
+        updateTodo(body);
     };
 
     const _renderCheckbox = () => {

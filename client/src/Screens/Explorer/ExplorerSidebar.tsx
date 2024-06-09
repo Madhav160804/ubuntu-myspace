@@ -49,12 +49,6 @@ const ExplorerSidebar = (props: any) => {
     const uploadFileHandler = async(e: any) => {
         if(e.target.files.length) {
             const file = e.target.files[0];
-            console.log(file);
-            // if(spaceUsed + file.size > 5e7) {
-            //     return toast.error("Not enough space!");
-            // }
-
-            // body.append('file', file);
             
             try{
                 toast.info(<span><strong>{file.name}</strong> upload started!</span>)
@@ -70,15 +64,13 @@ const ExplorerSidebar = (props: any) => {
                     folderId: activeFolder.id
                 }
                 const uploadingFile = await uploadBytes(storageRef, file);
-                console.log('uploading file',uploadingFile);
-                console.log(newFile)
                 await addDoc(collection(db,'files'),newFile);
                 setFiles((files: any) => {
                     return [...files,newFile];
                 })
             } catch(err) {
                 toast.error('File Upload failed!');
-                console.log(err)
+                console.error(err)
             }
 
 
