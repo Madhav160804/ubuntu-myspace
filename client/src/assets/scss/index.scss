@@ -32,6 +32,16 @@
     border-radius: 100px;
 }   
 
+::placeholder {
+    color: rgb(130, 129, 129) !important;
+    opacity: 0.5; /* Firefox */
+  }
+  
+  ::-ms-input-placeholder { /* Edge 12 -18 */
+    color: rgb(130, 129, 129) !important;
+  }
+
+  
 @import "./colors.scss";
 @import "./auth.scss";
 @import "./navbar.scss";

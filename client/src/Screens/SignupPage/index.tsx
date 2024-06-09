@@ -83,7 +83,7 @@ const SignupPage = () => {
                     />
 
                     <div className="auth-link">
-                        <Link to="/login" className="auth-link" >
+                        <Link to="/login" className="auth-link mt-3" >
                             <span className="fa-sm">Already have an accout? <strong>Login here</strong></span>
                         </Link>
                     </div>
